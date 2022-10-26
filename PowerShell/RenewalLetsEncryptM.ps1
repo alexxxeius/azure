@@ -66,11 +66,7 @@ New-ACMENonce -State $state -PassThru;
 # Create the identifier for the DNS name
 #$identifier = New-ACMEIdentifier $domain;
 
-
-$identifier = @(
-	New-ACMEIdentifier $domain;
-	New-ACMEIdentifier "www.$domain";
-)
+$identifier = @($domain.Split(","))
 
 # Create the order object at the ACME service.
 $order = New-ACMEOrder -State $state -Identifiers $identifier;
